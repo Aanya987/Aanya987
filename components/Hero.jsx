@@ -38,7 +38,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-photo">
-          <img src="/assets/aanya.jpg" alt="Portrait of Aanya" />
+          <img src="/assets/aanya_new_photo.jpg" alt="Portrait of Aanya" />
         </div>
       </div>
 
