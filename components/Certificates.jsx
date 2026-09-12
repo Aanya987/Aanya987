@@ -1,4 +1,3 @@
-import Image from "next/image";
 import CertMarquee from "./CertMarquee";
 
 export const CERTS = [
@@ -51,25 +50,7 @@ export default function Certificates({ onSelect }) {
     <section id="certificates" className="wrap reveal">
       <div className="sec-tag">Recognition</div>
       <div className="sec-title">Certificates &amp; Achievements</div>
-      <CertMarquee />
-      <div className="cert-grid">
-        {CERTS.map((c) => (
-          <button
-            className="cert-card"
-            key={c.img}
-            onClick={() => onSelect(c)}
-            aria-label={`View certificate: ${c.title}`}
-          >
-            <div className="cert-thumb">
-              <Image src={c.img} alt={c.title} width={400} height={300} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
-            </div>
-            <div className="cert-body">
-              <h4>{c.cardTitle}</h4>
-              <div className="issuer">{c.cardIssuer}</div>
-            </div>
-          </button>
-        ))}
-      </div>
+      <CertMarquee onSelect={onSelect} />
     </section>
   );
 }
