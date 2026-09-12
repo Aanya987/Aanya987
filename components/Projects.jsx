@@ -26,38 +26,53 @@ const PROJECTS = [
   },
 ];
 
+function ogImage(href) {
+  if (!href) return null;
+  const match = href.match(/github\.com\/([^/]+)\/([^/]+)/);
+  if (!match) return null;
+  return `https://opengraph.githubassets.com/1/${match[1]}/${match[2]}`;
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="wrap reveal">
       <div className="sec-tag">Selected Work</div>
       <div className="sec-title">Projects</div>
       <div className="proj-grid">
-        {PROJECTS.map((p) => (
-          <div className="proj-card" key={p.title}>
-            <h3>
+        {PROJECTS.map((p) => {
+          const preview = ogImage(p.href);
+          return (
+            <div className="proj-card" key={p.title}>
+              {preview && (
+                <div className="proj-preview">
+                  <img src={preview} alt="" loading="lazy" />
+                </div>
+              )}
+              <h3>
+                {p.href ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer">
+                    {p.title}
+                  </a>
+                ) : (
+                  p.title
+                )}
+              </h3>
+              <div className="proj-tags">
+                {p.tags.map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
+              <p>{p.desc}</p>
               {p.href ? (
-                <a href={p.href} target="_blank" rel="noopener noreferrer">
-                  {p.title}
+                <a className="proj-link" href={p.href} target="_blank" rel="noopener noreferrer">
+                  View on GitHub ↗
                 </a>
               ) : (
-                p.title
+                <span className="proj-link">{p.meta}</span>
               )}
-            </h3>
-            <div className="proj-tags">
-              {p.tags.map((t) => (
-                <span key={t}>{t}</span>
-              ))}
             </div>
-            <p>{p.desc}</p>
-            {p.href ? (
-              <a className="proj-link" href={p.href} target="_blank" rel="noopener noreferrer">
-                View on GitHub ↗
-              </a>
-            ) : (
-              <span className="proj-link">{p.meta}</span>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

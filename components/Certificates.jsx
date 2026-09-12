@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CertMarquee from "./CertMarquee";
 
 export const CERTS = [
   {
@@ -50,6 +51,7 @@ export default function Certificates({ onSelect }) {
     <section id="certificates" className="wrap reveal">
       <div className="sec-tag">Recognition</div>
       <div className="sec-title">Certificates &amp; Achievements</div>
+      <CertMarquee />
       <div className="cert-grid">
         {CERTS.map((c) => (
           <button
